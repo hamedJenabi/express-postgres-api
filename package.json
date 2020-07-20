@@ -16,7 +16,7 @@
     "postgres": "^1.0.2"
   },
   "scripts": {
-    "start": "node index.js -p ${PORT:-\"5432\"}",
+    "start": "node index.js",
     "migrate": "dotenv ley",
     "heroku-postbuild": "yarn migrate up"
   }
