@@ -8,5 +8,8 @@
     "ley": "^0.5.0",
     "pg": "^8.3.0",
     "postgres": "^1.0.2"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
