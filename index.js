@@ -1,9 +1,9 @@
-require('./extractHerokuDatabaseEnvVars')();
+// require('./extractHerokuDatabaseEnvVars')();
 require('dotenv').config();
 const express = require('express');
 const app = express();
 const postgres = require('postgres');
-const port = process.env.port || 3000;
+const port = process.env.port || 5432;
 const sql =
   process.env.NODE_ENV === 'production'
     ? postgres({ ssl: { rejectUnauthorized: false } })
