@@ -3,11 +3,11 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const postgres = require('postgres');
-const port = process.env.post || 3000;
+const port = process.extractHerokuDatabaseEnvVars.post || 3000;
 const sql =
   process.env.NODE_ENV === 'production'
-    ? postgres({ ssl: { rejectUnauthorized: false } }) :
-  postgres();
+    ? postgres({ ssl: { rejectUnauthorized: false } })
+    : postgres();
 
 /****** dictionary queries to choose the tables(object.key) *********/
 
@@ -43,5 +43,7 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(
+    ` app listening at http://${process.extractHerokuDatabaseEnvVars.PGHOST}`,
+  );
 });
