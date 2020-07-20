@@ -1,4 +1,10 @@
 {
+  "name": "express-postgres-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hamedJenabi/express-postgres-api.git",
+  "author": "Hamed <hamed.jenabi@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "csv": "^5.3.2",
     "dotenv": "^8.2.0",
@@ -10,6 +16,8 @@
     "postgres": "^1.0.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate": "dotenv ley",
+    "heroku-postbuild": "yarn migrate up"
   }
 }

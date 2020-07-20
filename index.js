@@ -12,66 +12,12 @@ const sql =
 
 const dictQueries = {
   'en-de': (wordRequest) => sql`
-  SELECT * FROM en-de WHERE LOWER(word) LIKE LOWER(${`${wordRequest}`})
+  SELECT * FROM en_de WHERE LOWER(word) LIKE LOWER(${`${wordRequest}`})
 `,
   'de-en': (wordRequest) => sql`
-  SELECT * FROM de-en WHERE LOWER(word) LIKE LOWER(${`${wordRequest}`})
+  SELECT * FROM de_en WHERE LOWER(word) LIKE LOWER(${`${wordRequest}`})
 `,
 };
-
-/******parsing EN_DE  **/
-
-const fs = require('fs');
-const path = require('path');
-const fastcsv = require('fast-csv');
-
-let stream = fs.createReadStream(
-  path.resolve(__dirname, 'assets', 'en_de_dict.csv'),
-);
-let enDE = [];
-let enDEStream = fastcsv
-  .parse({ delimiter: ';' }, { headers: true })
-  .on('data', function (data) {
-    enDE.push(data);
-  })
-  .on('end', function () {
-    // remove the first line: header
-    enDE.shift();
-    enDE.map((row) => {
-      let value1 = row[0];
-      let value2 = row[1];
-      let value3 = row[2];
-      sql`
-      INSERT INTO en_de (word, detail, result) VALUES(${value1}, ${value2}, ${value3}) `;
-    });
-  });
-
-stream.pipe(enDEStream);
-
-/***** parsing DE_EN *********/
-
-let streamDE = fs.createReadStream(
-  path.resolve(__dirname, 'assets', 'de_en_dict.csv'),
-);
-let deEn = [];
-let deEnStream = fastcsv
-  .parse({ delimiter: ';' }, { headers: true })
-  .on('data', function (data) {
-    deEn.push(data);
-  })
-  .on('end', function () {
-    // remove the first line: header
-    deEn.shift();
-    deEn.map((row) => {
-      let value1 = row[0];
-      let value2 = row[1];
-      let value3 = row[2];
-      sql`
-      INSERT INTO de_en (word, detail, result) VALUES(${value1}, ${value2}, ${value3}) `;
-    });
-  });
-
-streamDE.pipe(deEnStream);
 
 /****** English <-> German Endpoint *********/
 
