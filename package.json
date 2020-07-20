@@ -18,6 +18,7 @@
   "scripts": {
     "start": "node index.js -p ${PORT:-\"3000\"}",
     "migrate": "dotenv ley",
-    "heroku-postbuild": "yarn migrate up"
+    "build": "ng build",
+    "heroku-postbuild": "yarn migrate up && ng build --prod"
   }
 }
