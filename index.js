@@ -4,8 +4,8 @@ const app = express();
 const postgres = require('postgres');
 const port = process.env.post || 3000;
 const sql =
-  // process.env.NODE_ENV === 'production'
-  //   ? postgres({ ssl: { rejectUnauthorized: false } }) :
+  process.env.NODE_ENV === 'production'
+    ? postgres({ ssl: { rejectUnauthorized: false } }) :
   postgres();
 
 /****** dictionary queries to choose the tables(object.key) *********/
