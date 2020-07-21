@@ -19,7 +19,7 @@ const dictQueries = {
   SELECT * FROM de_en WHERE LOWER(word) LIKE LOWER(${`${wordRequest}`})
 `,
   'es-en': (wordRequest) => sql`
-  SELECT * FROM es_en WHERE LOWER(word) LIKE LOWER(${`${wordRequest}`})
+  SELECT * FROM es_en WHERE LOWER(word) LIKE LOWER(${`%${wordRequest}%`})
 `,
 };
 
