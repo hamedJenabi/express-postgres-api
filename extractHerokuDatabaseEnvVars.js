@@ -1,8 +1,10 @@
 module.exports = function extractHerokuDatabaseEnvVars() {
-  if (process.env.DATABASE_URL) {
+  if (process.env.HEROKU_POSTGRESQL_COPPER) {
     const url = require('url');
 
-    const { hostname, pathname, auth } = url.parse(process.env.DATABASE_URL);
+    const { hostname, pathname, auth } = url.parse(
+      process.env.HEROKU_POSTGRESQL_COPPER,
+    );
 
     const [username, password] = auth.split(':');
 

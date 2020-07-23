@@ -19,6 +19,6 @@ exports.up = async (sql) => {
 
 exports.down = async (sql) => {
   await sql`
-	DROP TABLE en_de
+	DROP TABLE de_en
 `;
 };
