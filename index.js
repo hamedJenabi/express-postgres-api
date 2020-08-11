@@ -21,6 +21,12 @@ const dictQueries = {
   'es-en': (wordRequest) => sql`
   SELECT * FROM es_en WHERE LOWER(word) LIKE LOWER(${`%${wordRequest}%`})
 `,
+  'en-es': (wordRequest) => sql`
+  SELECT * FROM en_es WHERE LOWER(word) LIKE LOWER(${`%${wordRequest}%`})
+`,
+  'it-en': (wordRequest) => sql`
+  SELECT * FROM it_en WHERE LOWER(word) LIKE LOWER(${`%${wordRequest}%`})
+`,
 };
 
 /****** English <-> German Endpoint *********/
